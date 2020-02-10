@@ -1,0 +1,22 @@
+<%= link_to new_topic_path, class: "btn btn-danger" do %>
+    <i class="mdi mdi-plus-circle mr-2"></i> New topic
+<% end %>
+
+<div class="table-responsive">
+  <table class="table table-sm table-centered table-striped dt-responsive nowrap w-100" id="products-datatable">
+    <thead>
+      <tr>
+        <th>Topic</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @topics.each do |topic| %>
+        <tr>
+          <td><%= link_to topic.title, topic_path(id: topic.id) %></td>
+          <td><%= topic.user.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
