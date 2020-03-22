@@ -16,11 +16,19 @@
   <% end %>
 <% end %>
 
-Comments:
+<div>Задачи:</div>
+
+<%= link_to 'Создать задачу', new_topic_task_path(topic_id: @topic.id) %>
+
+<% @tasks.each do |task| %>
+  <div><%= task.text %></div>
+<% end %>
+
+<div>Комментарии:</div>
 
 <%= form_with(model: [@topic, @comment], local: true) do |form| %>
   <div class="field form-group">
-    <%= form.label :text, class: 'col-form-label' %>
+    <%= form.label 'Новый комментарий:', class: 'col-form-label' %>
     <%= form.text_field :text, class: 'form-control' %>
   </div>
 

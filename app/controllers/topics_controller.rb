@@ -5,7 +5,6 @@ class TopicsController < ApplicationController
 
   def index
     @topics = Topic.includes(:user).order(created_at: :desc)
-    byebug
   end
 
   def new
@@ -21,6 +20,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @comments = @topic.comments
     @comment = @comments.build
+    @tasks = @topic.tasks
   end
 
   def update
