@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class CreateTopics < ActiveRecord::Migration[6.0]
+class CreateComments < ActiveRecord::Migration[6.0]
   def change
-    create_table :topics do |t|
-      t.string :title, null: false, default: ''
+    create_table :comments do |t|
       t.text :text, null: false, default: ''
+      t.references :topic, foreign_key: true, null: false, index: true
       t.references :user, foreign_key: true, null: false, index: true
 
       t.timestamps

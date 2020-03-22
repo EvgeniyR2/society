@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 class TopicsController < ApplicationController
   before_action :authenticate_user!
 
   def index
     @topics = Topic.includes(:user).order(created_at: :desc)
+    byebug
   end
 
   def new
@@ -16,6 +19,8 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    @comments = @topic.comments
+    @comment = @comments.build
   end
 
   def update

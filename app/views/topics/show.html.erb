@@ -9,8 +9,26 @@
     <%= form.text_field :text, class: 'form-control' %>
   </div>
 
+  <% if allowed_to?(:update?, @topic) %>
+    <div class="action form-group">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
+  <% end %>
+<% end %>
+
+Comments:
+
+<%= form_with(model: [@topic, @comment], local: true) do |form| %>
+  <div class="field form-group">
+    <%= form.label :text, class: 'col-form-label' %>
+    <%= form.text_field :text, class: 'form-control' %>
+  </div>
+
   <div class="action form-group">
     <%= form.submit class: "btn btn-success" %>
   </div>
+<% end %>
 
+<% @comments.each do |comment| %>
+  <div><%= comment.text %></div>
 <% end %>
