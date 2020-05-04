@@ -1,3 +1,11 @@
+<% content_for :styles do %>
+  <%= stylesheet_pack_tag 'topics' %>
+<% end %>
+
+<% content_for :scripts do %>
+  <%= javascript_pack_tag 'topics' %>
+<% end %>
+
 <%= form_with(model: @topic, local: true) do |form| %>
   <div class="field form-group">
     <%= form.label :title, class: 'col-form-label' %>
@@ -18,11 +26,16 @@
 
 <div>Задачи:</div>
 
+<% @tasks.each do |task| %>
+  <div></div>
+  <button class="accordion"><%= task.title %></button>
+  <div class="panel">
+    <p><%= task.text %></p>
+  </div>
+<% end %>
+
 <%= link_to 'Создать задачу', new_topic_task_path(topic_id: @topic.id) %>
 
-<% @tasks.each do |task| %>
-  <div><%= task.text %></div>
-<% end %>
 
 <div>Комментарии:</div>
 
